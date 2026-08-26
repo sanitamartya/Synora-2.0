@@ -1,11 +1,7 @@
-const express = require("express");
+const app = require("./app");
 
-const app = express();
+const PORT = 3000;
 
-app.get("/", (request, response) => {
-  response.send("Synora server is running");
-});
-
-app.listen(3000, () => {
-  console.log("Synora server listening on port 3000");
+app.listen(PORT, () => {
+  console.log(`Synora server listening on port ${PORT}`);
 });

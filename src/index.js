@@ -1,7 +1,6 @@
 const app = require("./app");
+const { port } = require("./config/env");
 
-const PORT = 3000;
-
-app.listen(PORT, () => {
-  console.log(`Synora server listening on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Synora server listening on port ${port}`);
 });

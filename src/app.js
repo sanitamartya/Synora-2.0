@@ -1,15 +1,12 @@
 const express = require("express");
+const requestLogger = require("./middleware/requestLogger");
+const router = require("./routes");
 
 const app = express();
 
+app.use(requestLogger);
 app.use(express.json());
 
-app.get("/", (request, response) => {
-  response.send("Synora server is running");
-});
-
-app.post("/echo", (request, response) => {
-  response.json(request.body);
-});
+app.use(router);
 
 module.exports = app;

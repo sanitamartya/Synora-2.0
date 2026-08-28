@@ -1,18 +1,42 @@
-const users = [];
+const pool = require("../config/database");
 
-const create = (user) => {
-  users.push(user);
+async function create(name) {
+  const result = await pool.query(
+    `
+      INSERT INTO users (name)
+      VALUES ($1)
+      RETURNING id, name
+    `,
+    [name],
+  );
 
-  return user;
-};
+  return result.rows[0];
+}
 
-const findAll = () => {
-  return users;
-};
+async function findAll() {
+  const result = await pool.query(
+    `
+      SELECT id, name
+      FROM users
+      ORDER BY id
+    `,
+  );
 
-const findById = (id) => {
-  return users.find((user) => user.id === id);
-};
+  return result.rows;
+}
+
+async function findById(id) {
+  const result = await pool.query(
+    `
+      SELECT id, name
+      FROM users
+      WHERE id = $1
+    `,
+    [id],
+  );
+
+  return result.rows[0];
+}
 
 module.exports = {
   create,

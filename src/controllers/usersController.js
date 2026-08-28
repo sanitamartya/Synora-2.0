@@ -1,21 +1,21 @@
 const userService = require("../services/userService");
 
-function createUser(request, response) {
-  const user = userService.createUser(request.body.name);
+async function createUser(request, response) {
+  const user = await userService.createUser(request.body.name);
 
   response.status(201).json(user);
 }
 
-function getUsers(request, response) {
-  const users = userService.getUsers();
+async function getUsers(request, response) {
+  const users = await userService.getUsers();
 
   response.json(users);
 }
 
-function getUserById(request, response) {
+async function getUserById(request, response) {
   const id = Number(request.params.id);
 
-  const user = userService.getUserById(id);
+  const user = await userService.getUserById(id);
 
   if (!user) {
     return response.status(404).json({

@@ -1,23 +1,23 @@
-const users = [];
+const userRepository = require("../repositories/userRepository");
 
-function createUser(name) {
+const createUser = (name) => {
+  const users = userRepository.findAll();
+
   const user = {
     id: users.length + 1,
     name,
   };
 
-  users.push(user);
+  return userRepository.create(user);
+};
 
-  return user;
-}
+const getUsers = () => {
+  return userRepository.findAll();
+};
 
-function getUsers() {
-  return users;
-}
-
-function getUserById(id) {
-  return users.find((user) => user.id === id);
-}
+const getUserById = (id) => {
+  return userRepository.findById(id);
+};
 
 module.exports = {
   createUser,

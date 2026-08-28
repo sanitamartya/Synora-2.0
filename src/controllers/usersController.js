@@ -1,24 +1,21 @@
-const users = [];
-console.log();
-function createUser(request, response) {
-  const user = {
-    id: users.length + 1,
-    name: request.body.name,
-  };
+const userService = require("../services/userService");
 
-  users.push(user);
+function createUser(request, response) {
+  const user = userService.createUser(request.body.name);
 
   response.status(201).json(user);
 }
 
 function getUsers(request, response) {
+  const users = userService.getUsers();
+
   response.json(users);
 }
 
 function getUserById(request, response) {
   const id = Number(request.params.id);
 
-  const user = users.find((user) => user.id === id);
+  const user = userService.getUserById(id);
 
   if (!user) {
     return response.status(404).json({

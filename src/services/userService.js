@@ -1,6 +1,6 @@
 const userRepository = require("../repositories/userRepository");
 
-const createUser = (name) => {
+function createUser(name) {
   const users = userRepository.findAll();
 
   const user = {
@@ -9,15 +9,15 @@ const createUser = (name) => {
   };
 
   return userRepository.create(user);
-};
+}
 
-const getUsers = () => {
+function getUsers() {
   return userRepository.findAll();
-};
+}
 
-const getUserById = (id) => {
+function getUserById(id) {
   return userRepository.findById(id);
-};
+}
 
 module.exports = {
   createUser,

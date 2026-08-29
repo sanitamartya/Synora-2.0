@@ -1,5 +1,7 @@
+const logger = require("../utils/logger");
+
 function requestLogger(request, response, next) {
-  console.log(`${request.method} ${request.originalUrl}`);
+  logger.info(`${request.method} ${request.originalUrl}`);
 
   next();
 }

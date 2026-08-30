@@ -11,6 +11,10 @@ router.post("/echo", (request, response) => {
   response.json(request.body);
 });
 
+router.get("/error", function (request, response, next) {
+  next(new Error("Test error"));
+});
+
 router.use("/users", usersRouter);
 
 module.exports = router;
